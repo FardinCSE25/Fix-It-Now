@@ -2,6 +2,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import config from "./config";
+import { globalErrorHandler } from "./middlewares/globalErrorHandler";
+import { routeNotFound } from "./middlewares/routeNotFound";
+import { authRoutes } from "./modules/auth/auth.route";
 
 
 const app: Application = express()
@@ -20,6 +23,14 @@ app.get("/", (req: Request, res: Response) => {
         author: "Fardin Ahmed",
     });
 });
+
+app.use("/api/auth", authRoutes)
+
+
+
+app.use(routeNotFound)
+
+app.use(globalErrorHandler)
 
 
 

@@ -12,7 +12,7 @@ model User {
 
     technicianProfile TechnicianProfile?
 
-    // availability Availability?
+    availability Availability?
 
     // services Service[]
 
