@@ -11,7 +11,6 @@ model User {
     updatedAt DateTime @updatedAt
 
     technicianProfile TechnicianProfile?
-
     availability Availability?
 
     // services Service[]
