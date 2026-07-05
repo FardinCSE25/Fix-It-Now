@@ -58,16 +58,32 @@ FixItNow is a backend REST API for a home service marketplace where customers ca
 ```
 src
 │
-├── app
-│   ├── modules
-│   ├── middlewares
-│   ├── routes
-│   ├── utils
-│   ├── interfaces
-│   └── errors
-│
 ├── config
+│   └── index.ts
+│
 ├── lib
+│   └── prisma.ts
+│
+├── middlewares
+│
+├── modules
+│   ├── user
+│   │   ├── user.controller.ts
+│   │   ├── user.interface.ts
+│   │   ├── user.route.ts
+│   │   └── user.service.ts
+│   │
+│   ├── technicianProfile
+│   ├── availability
+│   ├── category
+│   ├── service
+│   ├── booking
+│   ├── payment
+│   ├── review
+│   └── admin
+│
+├── utils
+│
 ├── app.ts
 └── server.ts
 ```
@@ -79,7 +95,7 @@ src
 Clone the repository
 
 ```bash
-git clone (https://github.com/FardinCSE25/Fix-It-Now)
+git clone https://github.com/FardinCSE25/Fix-It-Now
 ```
 
 Go to project directory
