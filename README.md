@@ -1,4 +1,4 @@
-# 🔧 FixItNow
+# 🔧 Fix It Now
 
 > **Your Trusted Home Service Platform**
 
