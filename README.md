@@ -55,7 +55,6 @@ FixItNow is a backend REST API for a home service marketplace where customers ca
 
 ## 📁 Project Structure
 
-```
 ```text
 src
 │
