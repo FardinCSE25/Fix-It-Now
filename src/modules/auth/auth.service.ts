@@ -166,9 +166,58 @@ const getMyProfileFromDB = async (id: string, role: Role) => {
 }
 
 
+const getAllUsersFromDB = async () => {
+    const user = await prisma.user.findMany({
+        omit: {
+            password: true
+        },
+        include: {
+            technicianProfile: {
+                omit: {
+                    createdAt: true
+                }
+            },
+            availability: true
+        }
+    })
+    return user;
+}
+
+
+
+const updateUserIntoDB = async (id: string, status: UserStatus) => {
+
+    const user = await prisma.user.findFirstOrThrow({
+        where: {
+            id
+        }
+    })
+
+    if (user.status === status) {
+        throw new Error(`User is already ${status} !`)
+    }
+
+    const updatedUser = await prisma.user.update({
+        where: {
+            id
+        },
+
+        data: {
+            status
+        },
+
+        omit: {
+            password: true
+        }
+    })
+
+    return updatedUser
+}
 
 export const authService = {
     registerUserIntoDB,
     loginUserIntoDB,
-    getMyProfileFromDB
+    getMyProfileFromDB,
+    getAllUsersFromDB,
+    updateUserIntoDB
 }

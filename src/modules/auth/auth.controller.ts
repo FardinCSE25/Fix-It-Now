@@ -54,8 +54,37 @@ const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFu
     });
 })
 
+
+const getAllUsers = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const result = await authService.getAllUsersFromDB();
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "Users retrieved successfully",
+        data: result
+    });
+})
+
+
+const updateUser = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params
+    const payload = req.body
+
+    const result = await authService.updateUserIntoDB(id as string, payload.status)
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "User updated successfully",
+        data: result
+    });
+})
+
 export const authController = {
     registerUser,
     loginUser,
-    getMyProfile
+    getMyProfile,
+    getAllUsers,
+    updateUser
 }
