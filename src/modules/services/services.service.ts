@@ -1,6 +1,6 @@
 import { ServiceWhereInput } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma";
-import { ServicePayload } from "./services.interface";
+import { ServicePayload, ServiceQuery } from "./services.interface";
 
 const createServiceIntoDB = async (payload: ServicePayload, technicianId: string) => {
     const { categoryId, title, description, price } = payload;
@@ -24,7 +24,11 @@ const createServiceIntoDB = async (payload: ServicePayload, technicianId: string
             price,
         },
         include: {
-            technician: true,
+            technician: {
+                omit:{
+                    password: true
+                }
+            },
             category: true,
         },
     });
@@ -33,8 +37,11 @@ const createServiceIntoDB = async (payload: ServicePayload, technicianId: string
 }
 
 
-const getAllServicesFromDB = async (type: string) => {
+const getAllServicesFromDB = async (query: ServiceQuery) => {
+    const { type, searchTerm } = query
 
+    const sortBy = query.sortBy ? query.sortBy : "price";
+    const sortOrder = query.sortOrder ? query.sortOrder : "desc"
     const andConditions: ServiceWhereInput[] = [];
 
     if (type) {
@@ -48,6 +55,15 @@ const getAllServicesFromDB = async (type: string) => {
         });
     }
 
+    if (searchTerm) {
+        andConditions.push({
+            title: {
+                contains: searchTerm as string,
+                mode: "insensitive",
+            },
+        });
+    }
+
     const result = await prisma.service.findMany({
         where: {
             AND: andConditions,
@@ -55,11 +71,18 @@ const getAllServicesFromDB = async (type: string) => {
         omit: {
             technicianId: true
         },
+        orderBy: {
+            [sortBy]: sortOrder
+        },
         include: {
             category: true,
             technician: {
                 select: {
-                    technicianProfile: true
+                    technicianProfile: {
+                        omit:{
+                            createdAt: true
+                        }
+                    }
                 }
             },
         },

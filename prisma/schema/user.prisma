@@ -1,25 +1,20 @@
 model User {
-    id       String @id @default(uuid())
-    name     String @db.VarChar(100)
-    email    String @unique @db.VarChar(150)
-    password String
+  id                String             @id @default(uuid())
+  name              String             @db.VarChar(100)
+  email             String             @unique @db.VarChar(150)
+  password          String
+  role              Role               @default(Customer)
+  status            UserStatus         @default(Active)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  availability      Availability?
+  technicianProfile TechnicianProfile?
 
-    role   Role       @default(Customer)
-    status UserStatus @default(Active)
+  services Service[]
 
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  customerReviews   Review[] @relation("CustomerReviews")
+  technicianReviews Review[] @relation("TechnicianReviews")
 
-    technicianProfile TechnicianProfile?
-    availability      Availability?
 
-    services Service[]
-
-    // customerBookings   Booking[] @relation("CustomerBookings")
-    // technicianBookings Booking[] @relation("TechnicianBookings")
-
-    // customerReviews   Review[] @relation("CustomerReviews")
-    // technicianReviews Review[] @relation("TechnicianReviews")
-
-    @@map("users")
+  @@map("users")
 }

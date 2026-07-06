@@ -1,20 +1,14 @@
 model Service {
-     id String @id @default(uuid()) 
+  id           String   @id @default(uuid())
+  technicianId String
+  technician   User @relation(fields: [technicianId], references: [id], onDelete: Cascade)
+  categoryId   String
+  title        String   @db.VarChar(150)
+  description  String?
+  price        Decimal  @db.Decimal(10, 2)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  category     Category @relation(fields: [categoryId], references: [id])
 
-     technicianId String 
-     technician User @relation(fields: [technicianId], references: [id], onDelete: Cascade) 
-
-     categoryId String 
-     category Category @relation(fields: [categoryId], references: [id], onDelete: Restrict) 
-
-     title String @db.VarChar(150) 
-     description String? @db.Text 
-     price Decimal @db.Decimal(10,2) 
-
-     createdAt DateTime @default(now()) 
-     updatedAt DateTime @updatedAt 
-
-    //  bookings Booking[] 
-
-     @@map("services")
+  @@map("services")
 }

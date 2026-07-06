@@ -1,10 +1,10 @@
 enum Role {
-    Customer
-    Technician
-    Admin
+  Customer
+  Technician
+  Admin
 }
 
 enum UserStatus {
-    Active
-    Banned
+  Active
+  Banned
 }

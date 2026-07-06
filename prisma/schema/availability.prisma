@@ -1,15 +1,12 @@
 model Availability {
-    id String @id @default(uuid())
+  id           String   @id @default(uuid())
+  technicianId String   @unique
+  workingDays  String[]
+  startTime    String
+  endTime      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  technician   User     @relation(fields: [technicianId], references: [id], onDelete: Cascade)
 
-    technicianId String @unique
-    technician   User   @relation(fields: [technicianId], references: [id], onDelete: Cascade)
-
-    workingDays String[]
-    startTime   String
-    endTime     String
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    @@map("availabilities")
+  @@map("availabilities")
 }

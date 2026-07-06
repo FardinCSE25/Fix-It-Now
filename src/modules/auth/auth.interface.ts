@@ -6,7 +6,10 @@ export interface RegisterUserPayload {
     password: string;
     role?: Role;
     experience?: string;
-    bio?: string
+    bio?: string;
+    workingDays?: string[];
+    startTime?: string;
+    endTime?: string;
 }
 
 export interface LoginPayload {

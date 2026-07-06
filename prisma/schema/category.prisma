@@ -1,13 +1,10 @@
 model Category {
-    id String @id @default(uuid())
+  id          String    @id @default(uuid())
+  title       String    @unique @db.VarChar(100)
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  services    Service[]
 
-    title       String  @unique @db.VarChar(100)
-    description String? @db.Text
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    services Service[]
-
-    @@map("categories")
+  @@map("categories")
 }

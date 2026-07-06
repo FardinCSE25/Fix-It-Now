@@ -4,3 +4,10 @@ export interface ServicePayload {
       description: string,
       price: number,
 }
+
+export interface ServiceQuery {
+    type?: string;
+    searchTerm?: string;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc"
+}

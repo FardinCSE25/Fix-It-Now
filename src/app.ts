@@ -7,6 +7,7 @@ import { routeNotFound } from "./middlewares/routeNotFound";
 import { authRoutes } from "./modules/auth/auth.route";
 import { categoryRoutes } from "./modules/categories/categories.route";
 import { servicesRoutes } from "./modules/services/services.route";
+import { technicianRoutes } from "./modules/technician/technician.route";
 
 
 const app: Application = express()
@@ -29,6 +30,8 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/api/auth", authRoutes)
 app.use("/api/categories", categoryRoutes)
 app.use("/api/services", servicesRoutes)
+app.use("/api/technicians", technicianRoutes)
+
 
 
 app.use(routeNotFound)

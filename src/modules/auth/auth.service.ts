@@ -7,7 +7,7 @@ import { generateAccessToken } from "../../utils/jwtUtils";
 import { LoginPayload, RegisterUserPayload } from "./auth.interface";
 
 const registerUserIntoDB = async (payload: RegisterUserPayload) => {
-    const { name, email, password, role, experience, bio } = payload;
+    const { name, email, password, role, experience, bio, workingDays, startTime, endTime } = payload;
 
     const isUserExist = await prisma.user.findUnique({
         where: { email }
@@ -38,6 +38,13 @@ const registerUserIntoDB = async (payload: RegisterUserPayload) => {
                 email,
                 password: hashedPassword,
                 role,
+                availability: {
+                    create: {
+                        workingDays,
+                        startTime: startTime!,
+                        endTime: endTime!
+                    }
+                },
                 technicianProfile: {
                     create: {
                         experience: experience!,
@@ -56,10 +63,15 @@ const registerUserIntoDB = async (payload: RegisterUserPayload) => {
                 email: registeredUser.email || email
             },
             omit: {
-                password: true
+                password: true,
             },
             include: {
-                technicianProfile: true
+                technicianProfile: {
+                    omit: {
+                        createdAt: true
+                    }
+                },
+                availability: true
             }
         })
     }
@@ -129,7 +141,12 @@ const getMyProfileFromDB = async (id: string, role: Role) => {
                 password: true
             },
             include: {
-                technicianProfile: true
+                technicianProfile: {
+                    omit: {
+                        createdAt: true
+                    }
+                },
+                availability: true
             }
         })
     }

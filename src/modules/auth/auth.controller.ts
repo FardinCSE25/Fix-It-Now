@@ -49,7 +49,7 @@ const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFu
     sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
-        message: "Your profile successfully",
+        message: "Your profile retrieved successfully",
         data: result
     });
 })

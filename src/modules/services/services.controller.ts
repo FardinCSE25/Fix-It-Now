@@ -7,7 +7,7 @@ import { servicesService } from "./services.service";
 const createService = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const technicianId = req.user?.id
     const payload = req.body;
-    
+
     const result = await servicesService.createServiceIntoDB(payload, technicianId);
 
     sendResponse(res, {
@@ -20,8 +20,8 @@ const createService = catchAsync(async (req: Request, res: Response, next: NextF
 
 
 const getAllServices = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const {type} = req.query
-    const result = await servicesService.getAllServicesFromDB(type as string)
+    const query = req.query
+    const result = await servicesService.getAllServicesFromDB(query)
 
     sendResponse(res, {
         success: true,
