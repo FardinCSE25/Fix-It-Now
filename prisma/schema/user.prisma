@@ -11,9 +11,9 @@ model User {
     updatedAt DateTime @updatedAt
 
     technicianProfile TechnicianProfile?
-    availability Availability?
+    availability      Availability?
 
-    // services Service[]
+    services Service[]
 
     // customerBookings   Booking[] @relation("CustomerBookings")
     // technicianBookings Booking[] @relation("TechnicianBookings")
