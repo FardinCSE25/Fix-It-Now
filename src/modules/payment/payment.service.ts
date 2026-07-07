@@ -50,8 +50,8 @@ const createCheckoutSessionIntoStripe = async (customerId: string, bookingId: st
             customerId: booking.customerId,
         },
 
-        success_url: `${config.app_url}/payment/success`,
-        cancel_url: `${config.app_url}/payment/cancel`,
+        success_url: `${config.app_url}/payment?success=true`,
+        cancel_url: `${config.app_url}/payment?success=false`,
     });
 
     return {
@@ -79,7 +79,99 @@ const webhookHandler = async (payload: Buffer, signature: string) => {
     }
 };
 
+
+const getMyPaymentHistoryFromDB = async (customerId: string) => {
+    const payments = await prisma.payment.findMany({
+        where: {
+            booking: {
+                customerId
+            }
+        },
+
+        omit: {
+            bookingId: true
+        },
+        include: {
+            booking:
+            {
+                omit: {
+                    technicianId: true,
+                    serviceId: true
+                },
+                include: {
+                    service: {
+                        select: {
+                            id: true,
+                            title: true,
+                            description: true,
+                            price: true
+                        }
+                    },
+                    technician: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true,
+                        },
+                    },
+                },
+            },
+        },
+    })
+    return payments
+}
+
+
+const getMySinglePaymentFromDB = async (customerId: string, paymentId: string) => {
+    const payment = await prisma.payment.findFirstOrThrow({
+        where: {
+            id: paymentId,
+            booking: {
+                customerId
+            }
+        },
+
+        omit: {
+            bookingId: true
+        },
+        include: {
+            booking:
+            {
+                omit: {
+                    technicianId: true,
+                    serviceId: true
+                },
+                include: {
+                    service: {
+                        omit: {
+                            technicianId: true
+                        }
+                    },
+                    technician: {
+                        select: {
+                            id: true,
+                            name: true,
+                            email: true,
+                            availability: {
+                                select: {
+                                    workingDays: true,
+                                    startTime: true,
+                                    endTime: true
+                                }
+                            }
+                        },
+                    },
+                },
+            },
+        },
+    })
+
+    return payment
+}
+
 export const paymentService = {
     createCheckoutSessionIntoStripe,
     webhookHandler,
+    getMyPaymentHistoryFromDB,
+    getMySinglePaymentFromDB
 };
