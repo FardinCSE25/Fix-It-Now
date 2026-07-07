@@ -1,7 +1,7 @@
 import { Role, UserStatus } from "../../../generated/prisma/enums";
 import { UserWhereInput } from "../../../generated/prisma/models";
 import { prisma } from "../../lib/prisma";
-import { TechnicianQuery } from "./Technician.interface";
+import { TechnicianQuery, UpdateAvailabilityPayload, UpdateTechnicianProfilePayload } from "./Technician.interface";
 
 const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
     const { searchTerm, status } = query;
@@ -67,30 +67,74 @@ const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
     return technicians;
 };
 
+
 const getSingleTechnicianFromDB = async (id: string) => {
     const technician = await prisma.user.findFirstOrThrow({
-    where: {
-        id,
-        role: Role.Technician,
-    },
-    omit: {
-        password: true,
-    },
-    include: {
-        technicianProfile:{
-            omit: {
-                userId: true,
-                createdAt: true
+        where: {
+            id,
+            role: Role.Technician,
+        },
+        omit: {
+            password: true,
+        },
+        include: {
+            technicianProfile: {
+                omit: {
+                    userId: true,
+                    createdAt: true
+                },
             },
-         },
-        technicianReviews: true
-        
-    },
-});
+            technicianReviews: true
+
+        },
+    });
     return technician
 }
 
+
+
+const updateTechnicianProfileIntoDB = async (userId: string, payload: UpdateTechnicianProfilePayload) => {
+
+    const updatedProfile = await prisma.technicianProfile.update({
+        where: {
+            userId
+        },
+        data: payload
+    });
+
+    return updatedProfile;
+};
+
+
+const updateAvailabilityIntoDB = async (technicianId: string, payload: UpdateAvailabilityPayload) => {
+
+    const availability = await prisma.availability.upsert({
+
+        where: {
+            technicianId
+        },
+
+        update: {
+            workingDays: payload.workingDays,
+            startTime: payload.startTime,
+            endTime: payload.endTime,
+        },
+
+        create: {
+            technicianId,
+            workingDays: payload.workingDays,
+            startTime: payload.startTime,
+            endTime: payload.endTime,
+        },
+    });
+
+
+    return availability;
+};
+
 export const technicianService = {
     getAllTechniciansFromDB,
-    getSingleTechnicianFromDB
+    getSingleTechnicianFromDB,
+    updateTechnicianProfileIntoDB,
+    updateAvailabilityIntoDB
 }

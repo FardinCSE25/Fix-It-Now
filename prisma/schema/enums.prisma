@@ -8,3 +8,10 @@ enum UserStatus {
   Active
   Banned
 }
+
+enum BookingStatus {
+  Accepted
+  Rejected
+  Completed
+  Pending
+}

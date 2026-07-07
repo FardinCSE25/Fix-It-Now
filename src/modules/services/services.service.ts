@@ -69,7 +69,8 @@ const getAllServicesFromDB = async (query: ServiceQuery) => {
             AND: andConditions,
         },
         omit: {
-            technicianId: true
+            technicianId: true,
+            categoryId: true
         },
         orderBy: {
             [sortBy]: sortOrder

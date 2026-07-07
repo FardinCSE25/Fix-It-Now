@@ -5,6 +5,7 @@ import config from "./config";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 import { routeNotFound } from "./middlewares/routeNotFound";
 import { authRoutes } from "./modules/auth/auth.route";
+import { bookingRoutes } from "./modules/booking/booking.route";
 import { categoryRoutes } from "./modules/categories/categories.route";
 import { servicesRoutes } from "./modules/services/services.route";
 import { technicianRoutes } from "./modules/technician/technician.route";
@@ -31,6 +32,7 @@ app.use("/api/auth", authRoutes)
 app.use("/api/categories", categoryRoutes)
 app.use("/api/services", servicesRoutes)
 app.use("/api/technicians", technicianRoutes)
+app.use("/api/bookings", bookingRoutes)
 
 
 

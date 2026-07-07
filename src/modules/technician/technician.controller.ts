@@ -10,7 +10,7 @@ const getAllTechnicians = catchAsync(async (req: Request, res: Response, next: N
 
     const result = await technicianService.getAllTechniciansFromDB(query)
 
-     sendResponse(res, {
+    sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "Technicians retrieved successfully",
@@ -25,7 +25,7 @@ const getSingleTechnician = catchAsync(async (req: Request, res: Response, next:
 
     const result = await technicianService.getSingleTechnicianFromDB(id as string)
 
-     sendResponse(res, {
+    sendResponse(res, {
         success: true,
         statusCode: httpStatus.OK,
         message: "Technician retrieved successfully",
@@ -34,7 +34,46 @@ const getSingleTechnician = catchAsync(async (req: Request, res: Response, next:
 })
 
 
+
+const updateTechnicianProfile = catchAsync(async (req: Request, res: Response) => {
+
+    const technicianId = req.user?.id;
+    const payload = req.body;
+
+    const result = await technicianService.updateTechnicianProfileIntoDB(
+        technicianId as string,
+        payload
+    );
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "Technician profile updated successfully",
+        data: result
+    });
+}
+);
+
+
+const updateAvailability = catchAsync(async (req: Request, res: Response) => {
+
+    const technicianId = req.user?.id;
+    const payload = req.body;
+
+    const result = await technicianService.updateAvailabilityIntoDB(technicianId as string, payload);
+
+    sendResponse(res, {
+        success: true,
+        statusCode: httpStatus.OK,
+        message: "Availability updated successfully",
+        data: result
+    });
+});
+
+
 export const technicianController = {
     getAllTechnicians,
-    getSingleTechnician
+    getSingleTechnician,
+    updateTechnicianProfile,
+    updateAvailability
 }

@@ -12,9 +12,11 @@ model User {
 
   services Service[]
 
+  customerBookings   Booking[] @relation("CustomerBookings")
+  technicianBookings Booking[] @relation("TechnicianBookings")
+
   customerReviews   Review[] @relation("CustomerReviews")
   technicianReviews Review[] @relation("TechnicianReviews")
-
 
   @@map("users")
 }
