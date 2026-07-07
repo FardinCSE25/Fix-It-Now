@@ -25,7 +25,7 @@ const createServiceIntoDB = async (payload: ServicePayload, technicianId: string
         },
         include: {
             technician: {
-                omit:{
+                omit: {
                     password: true
                 }
             },
@@ -79,8 +79,15 @@ const getAllServicesFromDB = async (query: ServiceQuery) => {
             category: true,
             technician: {
                 select: {
+                    availability: {
+                        select: {
+                            workingDays: true,
+                            startTime: true,
+                            endTime: true
+                        }
+                    },
                     technicianProfile: {
-                        omit:{
+                        omit: {
                             createdAt: true
                         }
                     }

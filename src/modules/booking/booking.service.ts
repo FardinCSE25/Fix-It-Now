@@ -1,3 +1,4 @@
+import { BookingStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 const createBookingIntoDB = async (customerId: string, serviceId: string) => {
@@ -108,8 +109,72 @@ const getMySpecificBookingFromDB = async (customerId: string, bookingId: string)
     return booking;
 };
 
+
+
+const getTechnicianBookingsFromDB = async (technicianId: string) => {
+    const bookings = await prisma.booking.findMany({
+        where: {
+            technicianId,
+        },
+
+        orderBy: {
+            createdAt: "desc",
+        },
+
+        include: {
+            customer: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                },
+            },
+
+            service: true,
+        },
+    });
+
+    return bookings;
+};
+
+
+const updateBookingStatusIntoDB = async (bookingId: string, technicianId: string, status: BookingStatus) => {
+
+    const booking = await prisma.booking.findFirstOrThrow({
+        where: {
+            id: bookingId,
+            technicianId,
+        },
+    });
+
+    const updatedBooking = await prisma.booking.update({
+        where: {
+            id: booking.id,
+        },
+        data: {
+            status,
+        },
+        include: {
+            customer: {
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                },
+            },
+            service: true,
+        },
+    });
+
+    return updatedBooking;
+};
+
+
 export const bookingService = {
     createBookingIntoDB,
     getMyBookingsFromDB,
-    getMySpecificBookingFromDB
+    getMySpecificBookingFromDB,
+
+    getTechnicianBookingsFromDB,
+    updateBookingStatusIntoDB
 }
