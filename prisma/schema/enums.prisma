@@ -15,3 +15,9 @@ enum BookingStatus {
   Completed
   Pending
 }
+
+enum PaymentStatus {
+  Pending
+  Paid
+  Failed
+}

@@ -57,7 +57,7 @@ const getMyBookingsFromDB = async (customerId: string) => {
 
         include: {
             service: true,
-
+            payment: true,
             technician: {
                 select: {
                     id: true,
@@ -88,7 +88,7 @@ const getMySpecificBookingFromDB = async (customerId: string, bookingId: string)
 
         include: {
             service: true,
-
+            payment: true,
             technician: {
                 select: {
                     id: true,
@@ -122,6 +122,7 @@ const getTechnicianBookingsFromDB = async (technicianId: string) => {
         },
 
         include: {
+            payment: true,
             customer: {
                 select: {
                     id: true,
@@ -155,6 +156,7 @@ const updateBookingStatusIntoDB = async (bookingId: string, technicianId: string
             status,
         },
         include: {
+            payment: true,
             customer: {
                 select: {
                     id: true,

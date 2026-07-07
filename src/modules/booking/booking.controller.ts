@@ -34,7 +34,7 @@ const getMyBookings = catchAsync(async (req, res) => {
 });
 
 
-const getMySpecificBooking = catchAsync(async (req: Request, res: Response) => {
+const getMySpecificBooking = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const customerId = req.user?.id;
     const { id } = req.params;
 

@@ -7,11 +7,14 @@ import { routeNotFound } from "./middlewares/routeNotFound";
 import { authRoutes } from "./modules/auth/auth.route";
 import { bookingRoutes } from "./modules/booking/booking.route";
 import { categoryRoutes } from "./modules/categories/categories.route";
+import { paymentRoutes } from "./modules/payment/payment.route";
 import { servicesRoutes } from "./modules/services/services.route";
 import { technicianRoutes } from "./modules/technician/technician.route";
 
 
 const app: Application = express()
+
+app.use("/api/payments/confirm", express.raw({ type: "application/json" }))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,7 +36,7 @@ app.use("/api/categories", categoryRoutes)
 app.use("/api/services", servicesRoutes)
 app.use("/api/technicians", technicianRoutes)
 app.use("/api/bookings", bookingRoutes)
-
+app.use("/api/payments", paymentRoutes)
 
 
 app.use(routeNotFound)

@@ -35,7 +35,7 @@ const getSingleTechnician = catchAsync(async (req: Request, res: Response, next:
 
 
 
-const updateTechnicianProfile = catchAsync(async (req: Request, res: Response) => {
+const updateTechnicianProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 
     const technicianId = req.user?.id;
     const payload = req.body;
@@ -55,7 +55,7 @@ const updateTechnicianProfile = catchAsync(async (req: Request, res: Response) =
 );
 
 
-const updateAvailability = catchAsync(async (req: Request, res: Response) => {
+const updateAvailability = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 
     const technicianId = req.user?.id;
     const payload = req.body;
