@@ -8,6 +8,7 @@ import { authRoutes } from "./modules/auth/auth.route";
 import { bookingRoutes } from "./modules/booking/booking.route";
 import { categoryRoutes } from "./modules/categories/categories.route";
 import { paymentRoutes } from "./modules/payment/payment.route";
+import { reviewRoutes } from "./modules/review/review.route";
 import { servicesRoutes } from "./modules/services/services.route";
 import { technicianRoutes } from "./modules/technician/technician.route";
 
@@ -37,6 +38,7 @@ app.use("/api/services", servicesRoutes)
 app.use("/api/technicians", technicianRoutes)
 app.use("/api/bookings", bookingRoutes)
 app.use("/api/payments", paymentRoutes)
+app.use("/api/reviews", reviewRoutes)
 
 
 app.use(routeNotFound)

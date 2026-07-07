@@ -79,6 +79,11 @@ const getAllServicesFromDB = async (query: ServiceQuery) => {
             category: true,
             technician: {
                 select: {
+                    technicianProfile: {
+                        omit: {
+                            createdAt: true
+                        }
+                    },
                     availability: {
                         select: {
                             workingDays: true,
@@ -86,9 +91,9 @@ const getAllServicesFromDB = async (query: ServiceQuery) => {
                             endTime: true
                         }
                     },
-                    technicianProfile: {
+                    technicianReviews: {
                         omit: {
-                            createdAt: true
+                            technicianId: true
                         }
                     }
                 }
