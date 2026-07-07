@@ -67,20 +67,18 @@ src
 ├── middlewares
 │
 ├── modules
-│   ├── user
-│   │   ├── user.controller.ts
-│   │   ├── user.interface.ts
-│   │   ├── user.route.ts
-│   │   └── user.service.ts
+│   ├── auth
+│   │   ├── auth.controller.ts
+│   │   ├── auth.interface.ts
+│   │   ├── auth.route.ts
+│   │   └── auth.service.ts
 │   │
-│   ├── technicianProfile
-│   ├── availability
+│   ├── technician
 │   ├── category
-│   ├── service
+│   ├── services
 │   ├── booking
 │   ├── payment
-│   ├── review
-│   └── admin
+│   └── review
 │
 ├── utils
 │
