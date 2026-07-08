@@ -9,12 +9,16 @@ const createBookingIntoDB = async (customerId: string, serviceId: string) => {
         },
     });
 
-    const isBookingAlreadyExist = await prisma.booking.findFirstOrThrow({
+    const isBookingAlreadyExist = await prisma.booking.findFirst({
         where: {
             customerId,
             serviceId
         }
     })
+
+    if (isBookingAlreadyExist) {
+        throw new Error("You have already booked this service.");
+    }
 
     const booking = await prisma.booking.create({
         data: {
