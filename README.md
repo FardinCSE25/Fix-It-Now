@@ -19,7 +19,7 @@ FixItNow is a backend REST API for a home service marketplace where customers ca
 - Manage Service Availability
 - Create & Manage Services
 - View Incoming Bookings
-- Accept / Decline Bookings
+- Accept / Reject Bookings
 - Update Booking Status
 
 ### 👨‍💼 Customer
@@ -27,14 +27,15 @@ FixItNow is a backend REST API for a home service marketplace where customers ca
 - View Technician Profiles
 - Book Services
 - Make Online Payments
-- View Booking History
+- View Payment History
 - Leave Reviews After Job Completion
 
 ### 🛡️ Admin
 - View All Users
-- Ban / Unban Users
+- Ban / Activate Users
 - Manage Categories
 - View All Bookings
+- View All Reviews
 
 ---
 
@@ -62,28 +63,33 @@ src
 │   └── index.ts
 │
 ├── lib
+|   ├── stripe.ts
 │   └── prisma.ts
 │
 ├── middlewares
-│
+│   ├── auth.ts
+|   ├── routeNotFound.ts
+│   └── globalErrorHandler.ts
+|
 ├── modules
-│   ├── user
-│   │   ├── user.controller.ts
-│   │   ├── user.interface.ts
-│   │   ├── user.route.ts
-│   │   └── user.service.ts
+│   ├── auth
+│   │   ├── auth.controller.ts
+│   │   ├── auth.interface.ts
+│   │   ├── auth.route.ts
+│   │   └── auth.service.ts
 │   │
-│   ├── technicianProfile
-│   ├── availability
+│   ├── technician
 │   ├── category
-│   ├── service
+│   ├── services
 │   ├── booking
 │   ├── payment
-│   ├── review
-│   └── admin
+│   └── review
 │
 ├── utils
-│
+│   ├── catchAsync.ts
+|   ├── jwtUtils.ts
+│   └── sendResponse.ts
+|
 ├── app.ts
 └── server.ts
 ```
@@ -171,37 +177,11 @@ Leave Review
 
 ---
 
-## 👥 User Roles
-
-### Customer
-
-- Browse Services
-- Book Technician
-- Make Payment
-- View Booking History
-- Leave Reviews
-
-### Technician
-
-- Manage Profile
-- Manage Availability
-- Create Services
-- Manage Bookings
-
-### Admin
-
-- Manage Users
-- Manage Categories
-- View All Bookings
-
----
-
 ## 🔐 Authentication
 
 Authentication is implemented using:
 
 - JWT Access Token
-- JWT Refresh Token
 - HTTP Only Cookies
 - Password Hashing with Bcrypt
 
