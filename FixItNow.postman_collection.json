@@ -1,0 +1,713 @@
+{
+	"info": {
+		"_postman_id": "51420432-afa2-447b-a2da-e39f7f7751d7",
+		"name": "FixItNow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "54682305",
+		"_collection_link": "https://fardin-next-7-2006360.postman.co/workspace/Fardin-Ahmed's-Workspace~71b0e4bb-da41-42f1-88bf-c8449b7453a5/collection/54682305-51420432-afa2-447b-a2da-e39f7f7751d7?action=share&source=collection_link&creator=54682305"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Murad Ahmed\",\n  \"email\": \"murad@fixit.com\",\n  \"password\": \"123456\",\n  \"role\": \"Technician\",\n  \"experience\": \"2years\",\n  \"bio\": \"Experienced electrical technician skilled in wiring, lighting installation, circuit troubleshooting, and electrical maintenance for residential and commercial properties.\",\n  \"workingDays\": [\"Tuesday\", \"Thursday\"],\n  \"startTime\": \"01:00 PM\",\n  \"endTime\": \"05:00 PM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/register",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"fahad@fixit.com\",\n    \"password\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\" : \"Active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users/f026e4f6-1907-4216-b352-884f9b92fc1a",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"users",
+								"f026e4f6-1907-4216-b352-884f9b92fc1a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/me",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Roof Repair\",\n    \"description\": \"Roof leak repair, waterproofing, roof tile replacement, and maintenance services.\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/categories",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/categories",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service",
+			"item": [
+				{
+					"name": "Create Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"categoryId\": \"a3111909-f491-403b-9fc3-90d1c82f6bbb\",\n  \"title\": \"Roof water leakage\",\n  \"description\": \"Fix leakage of ceiling.\",\n  \"price\": 3000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/services",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/services",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"services"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Plumbing",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "pipe",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "price",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Technician",
+			"item": [
+				{
+					"name": "All Technicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians?sortBy=experience&sortOrder=desc&status=Active",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"technicians"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "murad",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "experience"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc"
+								},
+								{
+									"key": "status",
+									"value": "Active"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Single Technician",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians/2d60d9a3-52c2-4bab-830b-69ad8d5fd175",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"technicians",
+								"2d60d9a3-52c2-4bab-830b-69ad8d5fd175"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Technician Profile",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bio\": \"Experienced electrician specializing in residential wiring and maintenance.\",\n    \"experience\": \"4 years\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians/profile",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"technicians",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Technician Availability",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"workingDays\": [\n        \"Sunday\",\n        \"Monday\"\n    ],\n    \"startTime\": \"02:00 AM\",\n    \"endTime\": \"06:00 PM\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians/availability",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"technicians",
+								"availability"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"serviceId\" : \"4b98c1b2-7533-4aed-88c1-fd49209f0484\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/my-bookings",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"my-bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer's Single Booking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/my-bookings/156f4345-e6db-4a05-a8ec-87e50a94e0b1",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"my-bookings",
+								"156f4345-e6db-4a05-a8ec-87e50a94e0b1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Technician Bookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/technician",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"technician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Technician Booking Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\" : \"Completed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/technician/156f4345-e6db-4a05-a8ec-87e50a94e0b1",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"technician",
+								"156f4345-e6db-4a05-a8ec-87e50a94e0b1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Create Checkout Session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\" : \"156f4345-e6db-4a05-a8ec-87e50a94e0b1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/payments/create",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"payments",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Payment History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\" : \"588bcc43-6eb1-4b8b-9369-0fd7c0ff878c\"\n}"
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/payments/history",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"payments",
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Payment Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/payments/f9d5261c-ac56-424b-b6b0-7e6dea3ff31d",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"payments",
+								"f9d5261c-ac56-424b-b6b0-7e6dea3ff31d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookingId\" : \"156f4345-e6db-4a05-a8ec-87e50a94e0b1\",\n    \"rating\": 3,\n    \"comment\": \"Perfect service. Highly recommended.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/reviews",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Plumbing\"\n    // \"description\" : \"123456\"\n}"
+						},
+						"url": {
+							"raw": "https://fix-it-now-rho.vercel.app/api/reviews",
+							"protocol": "https",
+							"host": [
+								"fix-it-now-rho",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
