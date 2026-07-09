@@ -56,6 +56,7 @@ const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
         },
 
         include: {
+            availability: true,
             technicianReviews: {
                 omit: {
                     technicianId: true
@@ -84,6 +85,7 @@ const getSingleTechnicianFromDB = async (id: string) => {
             password: true,
         },
         include: {
+            availability: true,
             technicianProfile: {
                 omit: {
                     userId: true,
