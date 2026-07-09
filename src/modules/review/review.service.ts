@@ -66,6 +66,9 @@ const getAllReviewsFromDB = async () => {
             customerId: true,
             technicianId: true
         },
+        orderBy: {
+            createdAt: "desc",
+        },
         include: {
             customer: {
                 omit: {

@@ -87,7 +87,9 @@ const getMyPaymentHistoryFromDB = async (customerId: string) => {
                 customerId
             }
         },
-
+        orderBy: {
+            createdAt: "desc",
+        },
         omit: {
             bookingId: true
         },

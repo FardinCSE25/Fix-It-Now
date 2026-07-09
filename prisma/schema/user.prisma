@@ -18,5 +18,6 @@ model User {
   customerReviews   Review[] @relation("CustomerReviews")
   technicianReviews Review[] @relation("TechnicianReviews")
 
+  @@index([email, id, role])
   @@map("users")
 }

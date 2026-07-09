@@ -45,6 +45,9 @@ const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
         },
 
         orderBy: {
+
+            createdAt: "desc",
+
             technicianProfile: {
                 [sortBy]: sortOrder,
             },
@@ -56,7 +59,7 @@ const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
 
         include: {
             technicianReviews: {
-                omit:{
+                omit: {
                     technicianId: true
                 }
             },
@@ -90,7 +93,7 @@ const getSingleTechnicianFromDB = async (id: string) => {
                 },
             },
             technicianReviews: {
-                omit:{
+                omit: {
                     technicianId: true
                 }
             }

@@ -1,10 +1,11 @@
 import bcrypt from "bcryptjs";
 import { SignOptions } from "jsonwebtoken";
 import { Role, UserStatus } from "../../../generated/prisma/enums";
+import { UserWhereInput } from "../../../generated/prisma/models";
 import config from "../../config";
 import { prisma } from "../../lib/prisma";
 import { generateAccessToken } from "../../utils/jwtUtils";
-import { LoginPayload, RegisterUserPayload } from "./auth.interface";
+import { LoginPayload, RegisterUserPayload, UserQuery } from "./auth.interface";
 
 const registerUserIntoDB = async (payload: RegisterUserPayload) => {
     const { name, email, password, role, experience, bio, workingDays, startTime, endTime } = payload;
@@ -166,22 +167,69 @@ const getMyProfileFromDB = async (id: string, role: Role) => {
 }
 
 
-const getAllUsersFromDB = async () => {
-    const user = await prisma.user.findMany({
-        omit: {
-            password: true
+const getAllUsersFromDB = async (query: UserQuery) => {
+    const { searchTerm, role, status } = query;
+
+    const sortBy = query.sortBy || "createdAt";
+    const sortOrder = query.sortOrder || "desc";
+
+    const andConditions: UserWhereInput[] = [];
+
+    if (searchTerm) {
+        andConditions.push({
+            OR: [
+                {
+                    name: {
+                        contains: searchTerm,
+                        mode: "insensitive",
+                    },
+                },
+                {
+                    email: {
+                        contains: searchTerm,
+                        mode: "insensitive",
+                    },
+                },
+            ],
+        });
+    }
+
+    if (role) {
+        andConditions.push({
+            role,
+        });
+    }
+
+    if (status) {
+        andConditions.push({
+            status,
+        });
+    }
+
+    const users = await prisma.user.findMany({
+        where: {
+            AND: andConditions,
         },
+
+        omit: {
+            password: true,
+        },
+
         include: {
             technicianProfile: {
                 omit: {
-                    createdAt: true
-                }
+                    createdAt: true,
+                },
             },
-            availability: true
-        }
-    })
-    return user;
-}
+            availability: true,
+        },
+        orderBy: {
+            [sortBy]: sortOrder,
+        },
+    });
+
+    return users;
+};
 
 
 

@@ -7,7 +7,7 @@ const createServiceIntoDB = async (payload: ServicePayload, technicianId: string
 
     const isCategoryExists = await prisma.category.findUniqueOrThrow({
         where: {
-            id: categoryId,
+            id: categoryId, 
         },
     });
 

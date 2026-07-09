@@ -56,7 +56,8 @@ const getMyProfile = catchAsync(async (req: Request, res: Response, next: NextFu
 
 
 const getAllUsers = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const result = await authService.getAllUsersFromDB();
+    const query = req.query;
+    const result = await authService.getAllUsersFromDB(query);
 
     sendResponse(res, {
         success: true,

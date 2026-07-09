@@ -1,4 +1,4 @@
-import { Role } from "../../../generated/prisma/enums";
+import { Role, UserStatus } from "../../../generated/prisma/enums";
 
 export interface RegisterUserPayload {
     name: string;
@@ -15,4 +15,12 @@ export interface RegisterUserPayload {
 export interface LoginPayload {
     email: string;
     password: string;
+}
+
+export interface UserQuery {
+    searchTerm?: string;
+    role?: Role;
+    status?: UserStatus;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
 }

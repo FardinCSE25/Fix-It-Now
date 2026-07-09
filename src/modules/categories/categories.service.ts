@@ -18,6 +18,9 @@ const getAllCategoriesFromDB = async () => {
     const categories = await prisma.category.findMany({
         include: {
             services: true
+        },
+        orderBy: {
+            createdAt: "desc",
         }
     })
 
