@@ -44,10 +44,8 @@ const getAllTechniciansFromDB = async (query: TechnicianQuery) => {
             AND: andConditions,
         },
 
-        orderBy: {
-
-            createdAt: "desc",
-
+        orderBy:
+        {
             technicianProfile: {
                 [sortBy]: sortOrder,
             },
