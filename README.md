@@ -2,6 +2,8 @@
 
 > **Your Trusted Home Service Platform**
 
+🌐 **Live API:** https://fix-it-now-rho.vercel.app
+
 FixItNow is a backend REST API for a home service marketplace where customers can find skilled technicians, book home services, make online payments, and leave reviews. Technicians can manage their services, availability, and bookings, while administrators can manage users and service categories.
 
 ---
