@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Murad Ahmed\",\n  \"email\": \"murad@fixit.com\",\n  \"password\": \"123456\",\n  \"role\": \"Technician\",\n  \"experience\": \"2years\",\n  \"bio\": \"Experienced electrical technician skilled in wiring, lighting installation, circuit troubleshooting, and electrical maintenance for residential and commercial properties.\",\n  \"workingDays\": [\"Tuesday\", \"Thursday\"],\n  \"startTime\": \"01:00 PM\",\n  \"endTime\": \"05:00 PM\"\n}",
+							"raw": "{\n  \"name\": \"Fahad Ahmed\",\n  \"email\": \"fahad@fixit.com\",\n  \"password\": \"123456\"\n//   \"role\": \"Technician\",\n//   \"experience\": \"6years\",\n//   \"bio\": \"Experienced electrical technician skilled in wiring, lighting installation, circuit troubleshooting, and electrical maintenance for residential and commercial properties.\",\n//   \"workingDays\": [\"Saturday\", \"Sunday\", \"Monday\", \"Wednesday\", \"Thursday\"],\n//   \"startTime\": \"09:00 PM\",\n//   \"endTime\": \"05:00 PM\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -48,7 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"fahad@fixit.com\",\n    \"password\" : \"123456\"\n}",
+							"raw": "{\n    \"email\" : \"nadim@fixit.com\",\n    \"password\" : \"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -78,7 +78,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users",
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users?searchTerm=Ahmed&status=Active&role=Technician",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -89,6 +89,30 @@
 								"api",
 								"auth",
 								"users"
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "Ahmed"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "Active"
+								},
+								{
+									"key": "role",
+									"value": "Technician"
+								}
 							]
 						}
 					},
@@ -101,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\" : \"Active\"\n}",
+							"raw": "{\n    \"status\" : \"Banned\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,7 +133,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users/f026e4f6-1907-4216-b352-884f9b92fc1a",
+							"raw": "https://fix-it-now-rho.vercel.app/api/auth/users/0322902b-a7a4-4969-a7a6-6a872c65cb2b",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -120,7 +144,7 @@
 								"api",
 								"auth",
 								"users",
-								"f026e4f6-1907-4216-b352-884f9b92fc1a"
+								"0322902b-a7a4-4969-a7a6-6a872c65cb2b"
 							]
 						}
 					},
@@ -160,7 +184,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Roof Repair\",\n    \"description\": \"Roof leak repair, waterproofing, roof tile replacement, and maintenance services.\"\n  }",
+							"raw": " {\n    \"title\": \"Furniture Assembly\",\n    \"description\": \"Assembly and installation of beds, wardrobes, office furniture, tables, and modular furniture.\"\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,7 +240,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"categoryId\": \"a3111909-f491-403b-9fc3-90d1c82f6bbb\",\n  \"title\": \"Roof water leakage\",\n  \"description\": \"Fix leakage of ceiling.\",\n  \"price\": 3000\n}",
+							"raw": " {\n    \"categoryId\": \"bb3e5775-eb75-4b3a-a2e6-1cf6e47898dc\",\n \"title\": \"Split AC Installation & Gas Refill\",\n    \"description\": \"Installation, gas refill, cooling optimization, and maintenance for split air conditioners.\",\n    \"price\": 3200\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,24 +264,12 @@
 					"response": []
 				},
 				{
-					"name": "Get All Services",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "All Services",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "text"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/services",
+							"raw": "https://fix-it-now-rho.vercel.app/api/services?sortBy=createdAt&sortOrder=desc",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -271,7 +283,7 @@
 							"query": [
 								{
 									"key": "type",
-									"value": "Plumbing",
+									"value": "AC Repair",
 									"disabled": true
 								},
 								{
@@ -281,13 +293,11 @@
 								},
 								{
 									"key": "sortBy",
-									"value": "price",
-									"disabled": true
+									"value": "createdAt"
 								},
 								{
 									"key": "sortOrder",
-									"value": "asc",
-									"disabled": true
+									"value": "desc"
 								}
 							]
 						}
@@ -305,7 +315,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/technicians?sortBy=experience&sortOrder=desc&status=Active",
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians?sortBy=experience&sortOrder=asc&status=Active",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -318,17 +328,17 @@
 							],
 							"query": [
 								{
-									"key": "searchTerm",
-									"value": "murad",
-									"disabled": true
-								},
-								{
 									"key": "sortBy",
 									"value": "experience"
 								},
 								{
 									"key": "sortOrder",
-									"value": "desc"
+									"value": "asc"
+								},
+								{
+									"key": "searchTerm",
+									"value": "Murad",
+									"disabled": true
 								},
 								{
 									"key": "status",
@@ -345,7 +355,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/technicians/2d60d9a3-52c2-4bab-830b-69ad8d5fd175",
+							"raw": "https://fix-it-now-rho.vercel.app/api/technicians/0322902b-a7a4-4969-a7a6-6a872c65cb2b",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -355,7 +365,7 @@
 							"path": [
 								"api",
 								"technicians",
-								"2d60d9a3-52c2-4bab-830b-69ad8d5fd175"
+								"0322902b-a7a4-4969-a7a6-6a872c65cb2b"
 							]
 						}
 					},
@@ -368,7 +378,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bio\": \"Experienced electrician specializing in residential wiring and maintenance.\",\n    \"experience\": \"4 years\"\n}",
+							"raw": "{\n    \"bio\": \"Experienced electrical technician skilled in wiring, lighting installation, circuit troubleshooting, and electrical maintenance for residential and commercial properties.\",\n    \"experience\": \"6 years\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -399,7 +409,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"workingDays\": [\n        \"Sunday\",\n        \"Monday\"\n    ],\n    \"startTime\": \"02:00 AM\",\n    \"endTime\": \"06:00 PM\"\n}",
+							"raw": "{\n            \"startTime\": \"09:00 AM\",\n            \"endTime\": \"05:00 PM\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,7 +445,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"serviceId\" : \"4b98c1b2-7533-4aed-88c1-fd49209f0484\"\n}",
+							"raw": "{\n    \"serviceId\" : \"09f976c0-7551-4a9e-96a3-f41722355288\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -540,7 +550,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/technician/156f4345-e6db-4a05-a8ec-87e50a94e0b1",
+							"raw": "https://fix-it-now-rho.vercel.app/api/bookings/technician/155f786b-8eef-4f77-a9bb-bb737764e0db",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -551,7 +561,7 @@
 								"api",
 								"bookings",
 								"technician",
-								"156f4345-e6db-4a05-a8ec-87e50a94e0b1"
+								"155f786b-8eef-4f77-a9bb-bb737764e0db"
 							]
 						}
 					},
@@ -569,7 +579,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bookingId\" : \"156f4345-e6db-4a05-a8ec-87e50a94e0b1\"\n}",
+							"raw": "{\n    \"bookingId\" : \"155f786b-8eef-4f77-a9bb-bb737764e0db\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -628,7 +638,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://fix-it-now-rho.vercel.app/api/payments/f9d5261c-ac56-424b-b6b0-7e6dea3ff31d",
+							"raw": "https://fix-it-now-rho.vercel.app/api/payments/63bfa732-f731-48c2-ad16-dab3c20891a1",
 							"protocol": "https",
 							"host": [
 								"fix-it-now-rho",
@@ -638,7 +648,7 @@
 							"path": [
 								"api",
 								"payments",
-								"f9d5261c-ac56-424b-b6b0-7e6dea3ff31d"
+								"63bfa732-f731-48c2-ad16-dab3c20891a1"
 							]
 						}
 					},
@@ -656,7 +666,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bookingId\" : \"156f4345-e6db-4a05-a8ec-87e50a94e0b1\",\n    \"rating\": 3,\n    \"comment\": \"Perfect service. Highly recommended.\"\n}",
+							"raw": "{\n    \"bookingId\" : \"155f786b-8eef-4f77-a9bb-bb737764e0db\",\n    \"rating\": 5,\n    \"comment\": \"Outstanding service. Highly recommended.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
